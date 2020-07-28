@@ -17,7 +17,7 @@ hist(startups_data$Profit)
 
 plot(startups_data$R.D.Spend,startups_data$Profit) ## there is stromg positive relationship
 plot(startups_data$Administration,startups_data$Profit) ## there is relationship but not strong
-plot(startups_data$Marketing.Spend,startups_data$Profit) ## there is slight strong positive relationship
+plot(startups_data$Marketing.Spend,startups_data$Profit) ## there is slight positive relationship
 
 ## lets check corelation coefficients
 
