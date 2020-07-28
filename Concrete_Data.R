@@ -43,59 +43,53 @@ attach(concrete_train)
 
 concrete_model <- neuralnet(strength ~ .,data = concrete_train)
 
-plot(concrete_model) ## here we got error as 4.53
+plot(concrete_model) 
 ## lets check performance of model on train data
 
 train_result <- compute(concrete_model,concrete_train[1:8])
 
-cor(train_result$net.result,concrete_train$strength) ## 0.8365997
+cor(train_result$net.result,concrete_train$strength) 
 
 ## lets check performance of model on test data
 
 test_result <- compute(concrete_model,concrete_test[1:8])
 
-cor(test_result$net.result,concrete_test$strength) ## 0.8159695
+cor(test_result$net.result,concrete_test$strength) 
 
 ## lets try to improve accuracy of model
 
 concrete_model1 <- neuralnet(strength ~ ., data = concrete_train,hidden = c(2,5))
 ## here we have given hiddeen parameter to increase accuracy i.e. in 2nd layer we want 5 more nodes
 
-plot(concrete_model1) ## here error has decreased to 2.45
+plot(concrete_model1) 
 
 ## now lets check performance on train data
 
 concrete_model1_pred <- compute(concrete_model1,concrete_train[1:8])
 
-cor(concrete_model1_pred$net.result,concrete_train$strength) ## 0.9152577
+cor(concrete_model1_pred$net.result,concrete_train$strength) 
 
 ## now lets check performance on test data
 
 concrete_model1_test <- compute(concrete_model1,concrete_test[1:8])
 
-cor(concrete_model1_test$net.result,concrete_test$strength) # 0.9233547
+cor(concrete_model1_test$net.result,concrete_test$strength)
 
 ## will try to increase the accuracy
 
 concrete_model2 <- neuralnet(strength ~ .,data = concrete_train,hidden = c(5,5,6))
-plot(concrete_model2) ## here erroe is reduced to 1.35
+plot(concrete_model2)
 
 concrete_model2_pred <- compute(concrete_model2,concrete_train[1:8])
 
-cor(concrete_model2_pred$net.result,concrete_train$strength) ## 0.9541077
+cor(concrete_model2_pred$net.result,concrete_train$strength)
 
 plot(concrete_model2_pred$net.result,concrete_train$strength)
 
-## it gives strong positive scatter plot
 
 ## lets apply it on test data
 
 concrete_model2_test <- compute(concrete_model2,concrete_test[1:8])
 
-cor(concrete_model2_test$net.result,concrete_test$strength) ##  0.9415653
+cor(concrete_model2_test$net.result,concrete_test$strength)
 
-## below are accuracies 
-
-# concrete_model   0.8365997
-# concrete_model1  0.9152577
-# concrete_model2  0.9541077 : we can go with this model as it has high accuracy
